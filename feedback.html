@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial scale=1.0">
+    <title>Feedback Form</title>
+    <link rel="stylesheet" href="style.css">
+    <h2>Feedback Form</h2>
+  </head>
+  <body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="contactus.html">Contact Us</a></li>
+                <li><a href="aboutus.html">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="product.html">Product</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <form id="feedbackForm">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="email">Email</label>
+        <input tyoe="email" id="email" name="email" required><br><br>
+
+        <label for="rating">Rating (1-5):</label>
+        <select id="rating" name="rating">
+            <option value="">Select Rating</option>
+            <option value="1">1- Poor</option>
+            <option value="2">2- Fair</option>
+            <option value="3">3- Good</option>
+            <option value="4">4- Very Good</option>
+            <option value="5">5- Excellent</option>
+        </select><br><br>
+        <label for="message">Feedback Message:</label>
+        <textarea id="message" name="message" rows="4" cols="50" required></textarea><br><br>
+        <button type="submit">Submit Feedback</button>
+    </form>
+    <div id="errorMessage" style="color: red;"></div>
+    <script src="feedbackValidation.js"></script>
+  </body>
+</html>
+<script>
+    function validation() {
+        let isValid = true:
+        //Get form inputs
+        let name = document.getElementById("name").value.trim();
+        let email= document.getElementById("email").value.trim();
+        let feedback= document.getElementById("feedback").value.trim();
+
+        //Get error elememts
+        let nameError= document.getElementById("nameError");
+        let emailError= document.getElementById("emailError");
+        let feedbackError= document.getElementById("feedbackError");
+
+        //Reset error messages
+        nameError.textContent="";
+        emailError.textContent="";
+        feedbackError.textContent="";
+
+        //Validate Name (Minimum 3 characters)
+        if (name.length <3){
+            nameError.textContent="Name must be at least 3 characters long";
+            isValid= false;
+        }
+        //Validate Email (Basic pattern check)
+        let emailpattern=/^[^\s0]+0[^\s0]+\.[^\s0]+$/;
+        (!emailPattern.test(email)) {
+            emailError.textContent="Enter a valid address.";
+            isValid= false;
+        }
+        //Validate Feedback (Minimum 10 characters)
+        if (feedback.length<10){
+            feedbackError.textContent="Feedback must be at least 10 characters long";
+            isValid= false;
+        }
+        return isValid;
+
+    }
+</script>
